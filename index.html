@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- SEO & Social Graph Metadata -->
+  <title>Ansh Raj Portfolio Web</title>
+  <meta name="description" content="Official personal 3D portfolio of Ansh Raj. B.Tech Computer Science Engineering (Data Science & AI) student (2025-2029), IIT Guwahati Gold Certificate holder (AIR 68), Python & Web Developer." />
+  <meta name="keywords" content="Ansh Raj, Data Science, Artificial Intelligence, Python Developer, Web Development, IIT Guwahati, EY Microsoft, AWS Forage, L&T, B.Tech CSE" />
+  <meta name="author" content="Ansh Raj" />
+  <meta property="og:title" content="Ansh Raj Portfolio" />
+  <meta property="og:description" content="Motivated B.Tech CSE (Data Science & AI) student (2025-2029) specializing in Python, Web Development, and Data Analytics." />
+  <meta property="og:type" content="website" />
+  
+  <!-- Premium Google Fonts: Syne (Display), Plus Jakarta Sans (Body), JetBrains Mono (Technical/HUD) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=7" />
+</head>
+<body class="loading">
+
+  <!-- Background WebGL 3D Canvas: Cybernetic Quantum Reactor -->
+  <canvas id="webgl-canvas" aria-label="3D Interactive Quantum Reactor Scene"></canvas>
+
+  <!-- Atmosphere Overlays: Subtle Grain & Radial Vignette -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+  <div class="vignette-overlay" aria-hidden="true"></div>
+
+  <!-- Top Glassmorphism Navigation Bar -->
+  <header class="hud-nav" role="banner">
+    <a href="#hero" class="brand" aria-label="Home">
+      <span class="brand-symbol">✦</span>
+      <span class="brand-name">ANSH RAJ</span>
+    </a>
+
+    <nav class="nav-links" role="navigation" aria-label="Main Navigation">
+      <a href="#hero" class="nav-item active" data-section="0">Home</a>
+      <a href="#about" class="nav-item" data-section="1">About</a>
+      <a href="#skills" class="nav-item" data-section="2">Skills</a>
+      <a href="#projects" class="nav-item" data-section="3">Projects</a>
+      <a href="#services" class="nav-item" data-section="4">Focus</a>
+      <a href="#certifications" class="nav-item" data-section="5">Credentials</a>
+      <a href="#contact" class="nav-item" data-section="6">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <!-- RGB LinkedIn Button -->
+      <a href="https://www.linkedin.com/in/ansh-raj-6442a7393" target="_blank" rel="noopener" class="btn-rgb btn-rgb-sm" title="Connect on LinkedIn">
+        <span class="rgb-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </span>
+        <span class="rgb-text">LinkedIn</span>
+      </a>
+
+      <!-- RGB GitHub Button -->
+      <a href="https://github.com/anshraj816" target="_blank" rel="noopener" class="btn-rgb btn-rgb-sm" title="View GitHub Repositories">
+        <span class="rgb-icon">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </span>
+        <span class="rgb-text">GitHub</span>
+      </a>
+
+      <!-- SFX Audio Synthesizer Toggle -->
+      <button id="audio-toggle" class="nav-btn sfx-btn sfx-icon-only" title="Toggle Synthesized UI Audio">
+        <span class="sound-bars" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Telemetry HUD Bar (Bottom-Left) -->
+  <aside class="hud-telemetry" aria-hidden="true">
+    <div class="telemetry-row"><span class="tel-label">IDENTITY:</span> <span class="tel-val">ANSH RAJ</span></div>
+    <div class="telemetry-row"><span class="tel-label">PROGRAM:</span> <span class="tel-val">B.TECH (2025–2029)</span></div>
+    <div class="telemetry-row"><span class="tel-label">CORE 3D:</span> <span class="tel-val">QUANTUM REACTOR</span></div>
+    <div class="telemetry-row"><span class="tel-label">FPS:</span> <span id="telemetry-fps" class="tel-val">60</span></div>
+  </aside>
+
+  <!-- Main Scrollable Flow -->
+  <main id="main-content">
+
+    <!-- ======================================================================
+         00 // HERO SECTION
+         ====================================================================== -->
+    <section id="hero" class="section hero-section">
+      <div class="container hero-container">
+        
+        <div class="hero-text-block">
+          <div class="hero-eyebrow">
+            <span class="badge-tag">B.TECH CSE (DATA SCIENCE &amp; ARTIFICIAL INTELLIGENCE)</span>
+            <span class="badge-dot">•</span>
+            <span class="badge-loc">BATCH 2025 — 2029</span>
+          </div>
+
+          <h1 class="hero-heading">
+            <span class="line-wrap"><span class="hero-name">ANSH RAJ</span></span>
+            <span class="line-wrap"><span class="hero-role gradient-text">DATA SCIENCE &amp; AI</span></span>
+            <span class="line-wrap"><span class="hero-sub">&amp; WEB DEVELOPER</span></span>
+          </h1>
+
+          <p class="hero-tagline">
+            Motivated second-year B.Tech Computer Science Engineering (Data Science &amp; AI) student 
+            (<strong>Batch 2025–2029</strong>) with a strong foundation in <strong>Python</strong>, 
+            <strong>Git, GitHub</strong>, and <strong>Web Development</strong>. 
+            Actively seeking a <strong>Data Analytics Apprenticeship</strong> to build impactful real-world solutions.
+          </p>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary" data-sfx="click">
+              <span>Explore My Work</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+
+            <!-- RGB Professional LinkedIn Button -->
+            <a href="https://www.linkedin.com/in/ansh-raj-6442a7393" target="_blank" rel="noopener" class="btn-rgb" data-sfx="click">
+              <span class="rgb-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              </span>
+              <span>Connect on LinkedIn</span>
+              <span class="btn-rgb-arrow">→</span>
+            </a>
+
+            <!-- RGB Professional GitHub Button -->
+            <a href="https://github.com/anshraj816" target="_blank" rel="noopener" class="btn-rgb" data-sfx="click">
+              <span class="rgb-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </span>
+              <span>GitHub Repositories</span>
+              <span class="btn-rgb-arrow">→</span>
+            </a>
+          </div>
+
+          <!-- Hero Metrics -->
+          <div class="hero-metrics">
+            <div class="metric-item">
+              <span class="metric-number" data-target="68">0</span><span class="metric-suffix"> AIR</span>
+              <span class="metric-label">IIT Guwahati Technothlon</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <span class="metric-number" data-target="8">0</span><span class="metric-suffix">+</span>
+              <span class="metric-label">Industry Certifications</span>
+            </div>
+            <div class="metric-divider"></div>
+            <div class="metric-item">
+              <span class="metric-number" data-target="100">0</span><span class="metric-suffix">%</span>
+              <span class="metric-label">Commitment &amp; Problem Solving</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Scene Controls & Scroll Down Indicator -->
+        <div class="hero-3d-hint">
+          <div class="interaction-compass">
+            <div class="compass-ring"></div>
+            <p class="hint-title">CYBERNETIC REACTOR</p>
+            <p class="hint-subtitle">SCROLL TO TRIGGER EXPLODED VIEW</p>
+            <div class="scroll-arrow" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         01 // ABOUT SECTION
+         ====================================================================== -->
+    <section id="about" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">01 // IDENTITY &amp; SUMMARY</span>
+          <h2 class="section-title">ABOUT <span class="gradient-text">ANSH RAJ</span></h2>
+          <p class="section-desc">Second-year B.Tech Computer Science Engineering (Data Science &amp; AI) student (Batch 2025–2029).</p>
+        </div>
+
+        <div class="about-grid">
+          
+          <!-- Left Column: Biography & Vision -->
+          <div class="glass-card about-card" data-tilt>
+            <div class="card-header-bar">
+              <span class="bar-pill">ENGINEERING IDENTITY</span>
+              <span class="bar-meta">ANSH_RAJ.BIO</span>
+            </div>
+            
+            <h3 class="about-lead">Transforming Complex Data into Actionable Clarity.</h3>
+            
+            <p class="about-paragraph">
+              Motivated and detail-oriented second-year <strong>B.Tech Computer Science Engineering (Data Science &amp; Artificial Intelligence)</strong> student 
+              (<strong>2025–2029</strong>) with a strong foundation in <strong>Python, Git, GitHub, and web development</strong>.
+            </p>
+            <p class="about-paragraph">
+              Passionate about solving real-world problems through technology and continuously improving programming skills. 
+              Seeking a <strong>Data Analytics Apprenticeship</strong> where I can contribute, learn from experienced professionals, 
+              and build impactful, data-driven solutions.
+            </p>
+
+            <div class="about-pillars">
+              <div class="pillar-item">
+                <span class="pillar-icon">📊</span>
+                <div>
+                  <h4>Data Analytics &amp; Problem Solving</h4>
+                  <p>Exploratory data analysis, statistical logic, Python programming, and insightful visualizations.</p>
+                </div>
+              </div>
+              <div class="pillar-item">
+                <span class="pillar-icon">⚡</span>
+                <div>
+                  <h4>Full-Stack &amp; Web Development</h4>
+                  <p>Modern HTML5, CSS3, JavaScript, WordPress, responsive layouts, and interactive Three.js 3D web interfaces.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Personal Photo / Avatar & RGB Buttons -->
+          <div class="glass-card portrait-card">
+            <div class="card-header-bar">
+              <span class="bar-pill">ONLINE PRESENCE</span>
+              <span class="bar-meta">OFFICIAL CHANNELS</span>
+            </div>
+
+            <!-- 3D FLIP BIOMETRIC SCANNER CARD -->
+            <div class="cyber-biometric-card" id="biometricCard">
+              <div class="flip-inner">
+                <!-- FRONT SIDE: Scanning HUD & RGB Laser Over Image -->
+                <div class="flip-face flip-front">
+                  <div class="scan-img-underlay">
+                    <img src="profile.jpg" alt="Ansh Raj Scanning" class="profile-photo-scan" />
+                    <div class="scan-matrix-mesh"></div>
+                  </div>
+                  <div class="rgb-scanner-beam"></div>
+                  <div class="scan-hud-corners">
+                    <span class="hud-c top-left"></span>
+                    <span class="hud-c top-right"></span>
+                    <span class="hud-c bottom-left"></span>
+                    <span class="hud-c bottom-right"></span>
+                  </div>
+                  <div class="scan-target-reticle">
+                    <div class="reticle-inner-ring"></div>
+                    <span class="reticle-glyph">✦</span>
+                  </div>
+                  <div class="scan-status-info">
+                    <div class="scan-badge">RGB BIOMETRIC SCAN // ACTIVE</div>
+                    <div class="scan-prompt">HOVER CURSOR TO DECRYPT IDENTITY</div>
+                  </div>
+
+                  <!-- Hover Decryption Loading Overlay (1 to 100) -->
+                  <div class="scan-loading-overlay" id="scanLoadingOverlay">
+                    <div class="loading-spinner-ring"></div>
+                    <div class="loading-pct-text" id="scanLoadingPct">0%</div>
+                    <div class="loading-sub-text">DECRYPTING NEURAL IDENTITY...</div>
+                  </div>
+                </div>
+
+                <!-- BACK SIDE: Revealed Clean Portrait with Verified Badge -->
+                <div class="flip-face flip-back">
+                  <div class="profile-img-wrap">
+                    <img src="profile.jpg" alt="Ansh Raj - Verified Portrait" class="profile-photo" />
+                    <div class="img-cyber-badge">
+                      <span class="badge-dot-green"></span>
+                      <span>IDENTITY VERIFIED // ANSH RAJ</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="goals-box">
+              <h4 class="goals-title">VERIFIED PROFILE BUTTONS</h4>
+              <div class="profile-direct-links">
+                <!-- RGB LinkedIn Button -->
+                <a href="https://www.linkedin.com/in/ansh-raj-6442a7393" target="_blank" rel="noopener" class="btn-rgb btn-rgb-block">
+                  <span class="rgb-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  </span>
+                  <span>Open LinkedIn Profile</span>
+                  <span class="btn-rgb-arrow">↗</span>
+                </a>
+
+                <!-- RGB GitHub Button -->
+                <a href="https://github.com/anshraj816" target="_blank" rel="noopener" class="btn-rgb btn-rgb-block">
+                  <span class="rgb-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </span>
+                  <span>Explore GitHub Projects</span>
+                  <span class="btn-rgb-arrow">↗</span>
+                </a>
+
+                <!-- RGB Email Button -->
+                <a href="mailto:ar2575499@gmail.com" class="btn-rgb btn-rgb-block">
+                  <span class="rgb-icon">✉️</span>
+                  <span>Send Direct Email</span>
+                  <span class="btn-rgb-arrow">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         02 // SKILLS SECTION
+         ====================================================================== -->
+    <section id="skills" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">02 // TECHNICAL ARSENAL</span>
+          <h2 class="section-title">SKILLS &amp; <span class="gradient-text">CAPABILITIES</span></h2>
+          <p class="section-desc">Core programming languages, data analytics tools, and web engineering practices.</p>
+        </div>
+
+        <div class="skills-grid">
+          
+          <!-- Category 1: Programming Languages -->
+          <div class="glass-card skill-cluster" data-tilt>
+            <div class="skill-cluster-header">
+              <div class="cluster-icon">🐍</div>
+              <h3>Programming Languages</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-pill">
+                <span class="skill-name">Python</span>
+                <span class="skill-tag">Primary / Data Science</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">JavaScript (ES6+)</span>
+                <span class="skill-tag">Web Logic &amp; DOM</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">HTML5</span>
+                <span class="skill-tag">Semantic Markup</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">CSS3 &amp; Responsive Layouts</span>
+                <span class="skill-tag">Flexbox &amp; CSS Grid</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: Data Science & AI -->
+          <div class="glass-card skill-cluster" data-tilt>
+            <div class="skill-cluster-header">
+              <div class="cluster-icon">📈</div>
+              <h3>Data Science &amp; AI</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-pill">
+                <span class="skill-name">Data Analytics &amp; EDA</span>
+                <span class="skill-tag">Specialization</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">NumPy &amp; Pandas</span>
+                <span class="skill-tag">Data Wrangling</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">Data Visualization (Matplotlib)</span>
+                <span class="skill-tag">Visual Analytics</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">Artificial Intelligence Fundamentals</span>
+                <span class="skill-tag">Academic Coursework</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3: Web Development & CMS -->
+          <div class="glass-card skill-cluster" data-tilt>
+            <div class="skill-cluster-header">
+              <div class="cluster-icon">🌐</div>
+              <h3>Web Development &amp; 3D</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-pill">
+                <span class="skill-name">Responsive Web Engineering</span>
+                <span class="skill-tag">Cross-Device</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">WordPress Website Development</span>
+                <span class="skill-tag">Udemy Certified</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">Three.js &amp; WebGL</span>
+                <span class="skill-tag">Interactive 3D</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">DOM Scripting &amp; Animations</span>
+                <span class="skill-tag">Kinetic Physics</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 4: Tools & Version Control -->
+          <div class="glass-card skill-cluster" data-tilt>
+            <div class="skill-cluster-header">
+              <div class="cluster-icon">⚙</div>
+              <h3>Developer Tools &amp; Cloud</h3>
+            </div>
+            <div class="skill-items">
+              <div class="skill-pill">
+                <span class="skill-name">Git &amp; GitHub</span>
+                <span class="skill-tag">Certified Workflow</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">AWS Solutions Architecture</span>
+                <span class="skill-tag">Forage Certified</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">VS Code &amp; Extensions</span>
+                <span class="skill-tag">Primary Environment</span>
+              </div>
+              <div class="skill-pill">
+                <span class="skill-name">Jupyter Notebooks</span>
+                <span class="skill-tag">Data Modeling</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 5: Professional Soft Skills & Leadership -->
+          <div class="glass-card skill-cluster full-span-cluster" data-tilt>
+            <div class="skill-cluster-header">
+              <div class="cluster-icon">🎯</div>
+              <h3>Professional Competencies (L&amp;T Certified)</h3>
+            </div>
+            <div class="skill-items wrap-row">
+              <div class="skill-pill"><span class="skill-name">Critical Thinking</span></div>
+              <div class="skill-pill"><span class="skill-name">Design Thinking</span></div>
+              <div class="skill-pill"><span class="skill-name">Leadership &amp; Teamwork</span></div>
+              <div class="skill-pill"><span class="skill-name">Real-World Problem Solving</span></div>
+              <div class="skill-pill"><span class="skill-name">Fast Technical Adaptation</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         03 // PRACTICAL PORTFOLIO & REPOSITORIES
+         ====================================================================== -->
+    <section id="projects" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">03 // PRACTICAL PORTFOLIO &amp; REPOSITORIES</span>
+          <h2 class="section-title">FEATURED <span class="gradient-text">PROJECTS</span></h2>
+          <p class="section-desc">Practical software engineering and data applications on my GitHub profile.</p>
+        </div>
+
+        <div class="projects-gallery">
+          
+          <!-- Project 1: QUANTRIX Personal Intelligence & Analytics Platform -->
+          <article class="project-showcase glass-card" data-tilt>
+            <div class="project-media-col">
+              <div class="project-screen-mockup">
+                <div class="screen-glow glow-cyan"></div>
+                <div class="screen-content">
+                  <div class="mockup-hud-top">
+                    <span class="hud-circle red"></span>
+                    <span class="hud-circle yellow"></span>
+                    <span class="hud-circle green"></span>
+                    <span class="hud-title">quantrix-ai-lab.github.io</span>
+                  </div>
+                  <div class="mockup-body">
+                    <div class="mockup-graphic quantrix-graphic">
+                      <div class="graphic-pulse"></div>
+                      <div class="graphic-label">QUANTRIX ANALYTICS</div>
+                      <div class="graphic-bars">
+                        <span></span><span></span><span></span><span></span><span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-col">
+              <div class="project-badge-row">
+                <span class="badge-featured">FINANCE · TIME · DATA PLATFORM</span>
+                <span class="badge-year">2026</span>
+              </div>
+              <h3 class="project-heading">QUANTRIX — Personal Intelligence Platform</h3>
+              <p class="project-narrative">
+                A personal intelligence and data analytics platform combining deterministic cashflow modeling, 
+                12-month savings projections, 24-hour routine balancing with collision-free scheduling, 
+                and in-browser CSV data intelligence with anomaly auditing and correlation analysis.
+              </p>
+              <div class="project-tech-chips">
+                <span>React</span>
+                <span>TypeScript</span>
+                <span>Vite</span>
+                <span>Tailwind CSS</span>
+                <span>Recharts</span>
+                <span>PapaParse</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://quantrix-ai-lab.github.io/" target="_blank" rel="noopener" class="btn btn-primary btn-sm" data-sfx="click">
+                  <span>Live Demo</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+                </a>
+                <a href="https://github.com/quantrix-ai-lab/quantrix-ai-lab.github.io" target="_blank" rel="noopener" class="btn-rgb btn-rgb-sm" data-sfx="click">
+                  <span class="rgb-icon">🐙</span>
+                  <span>Source Code</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Python Data Analytics & Exploratory Suite -->
+          <article class="project-showcase glass-card" data-tilt>
+            <div class="project-media-col">
+              <div class="project-screen-mockup">
+                <div class="screen-glow glow-violet"></div>
+                <div class="screen-content">
+                  <div class="mockup-hud-top">
+                    <span class="hud-circle red"></span>
+                    <span class="hud-circle yellow"></span>
+                    <span class="hud-circle green"></span>
+                    <span class="hud-title">github.com/anshraj816</span>
+                  </div>
+                  <div class="mockup-body">
+                    <div class="mockup-graphic aether-graphic">
+                      <div class="graphic-rings"></div>
+                      <div class="graphic-label">PYTHON DATA LAB</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-col">
+              <div class="project-badge-row">
+                <span class="badge-featured violet">DATA SCIENCE &amp; ANALYTICS</span>
+                <span class="badge-year">2026</span>
+              </div>
+              <h3 class="project-heading">Python Data Analytics &amp; Exploratory Suite</h3>
+              <p class="project-narrative">
+                Comprehensive data analytics pipeline built in Python utilizing Pandas, NumPy, and Matplotlib. 
+                Focuses on cleaning unstructured datasets, discovering statistical trends, outlier detection, 
+                and delivering visual analytics dashboards for strategic decision-making.
+              </p>
+              <div class="project-tech-chips">
+                <span>Python</span>
+                <span>Pandas</span>
+                <span>NumPy</span>
+                <span>Matplotlib</span>
+                <span>Jupyter</span>
+                <span>Git/GitHub</span>
+              </div>
+              <div class="project-actions">
+                <a href="https://github.com/anshraj816" target="_blank" rel="noopener" class="btn-rgb btn-rgb-sm" data-sfx="click">
+                  <span class="rgb-icon">🐙</span>
+                  <span>View on GitHub</span>
+                  <span class="btn-rgb-arrow">→</span>
+                </a>
+                <a href="https://www.linkedin.com/in/ansh-raj-6442a7393" target="_blank" rel="noopener" class="btn-rgb btn-rgb-sm" data-sfx="click">
+                  <span class="rgb-icon">💼</span>
+                  <span>LinkedIn Highlights</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Interactive 3D Personal Portfolio -->
+          <article class="project-showcase glass-card" data-tilt>
+            <div class="project-media-col">
+              <div class="project-screen-mockup">
+                <div class="screen-glow glow-blue"></div>
+                <div class="screen-content">
+                  <div class="mockup-hud-top">
+                    <span class="hud-circle red"></span>
+                    <span class="hud-circle yellow"></span>
+                    <span class="hud-circle green"></span>
+                    <span class="hud-title">github.com/anshraj816/portfolio</span>
+                  </div>
+                  <div class="mockup-body">
+                    <div class="mockup-graphic synapse-graphic">
+                      <div class="graphic-nodes">
+                        <span></span><span></span><span></span>
+                      </div>
+                      <div class="graphic-label">WEBGL 3D PORTFOLIO</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info-col">
+              <div class="project-badge-row">
+                <span class="badge-featured blue">INTERACTIVE 3D WEB</span>
+                <span class="badge-year">2026</span>
+              </div>
+              <h3 class="project-heading">Dimensional 3D Portfolio Website</h3>
+              <p class="project-narrative">
+                Custom-engineered 3D web experience built with Three.js, HTML5, CSS3, and JavaScript. 
+                Features kinetic mouse-following physics, interactive orbital geometries, smooth scroll-triggered 
+                camera depth transitions, and native Web Audio synthesis.
+              </p>
+              <div class="project-tech-chips">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>JavaScript</span>
+                <span>Three.js</span>
+                <span>WebGL</span>
+                <span>Web Audio API</span>
+              </div>
+              <div class="project-actions">
+                <a href="#hero" class="btn btn-primary btn-sm" data-sfx="click">
+                  <span>Explore Reactor Scene</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="https://github.com/anshraj816" target="_blank" rel="noopener" class="btn-rgb btn-rgb-sm" data-sfx="click">
+                  <span class="rgb-icon">🐙</span>
+                  <span>View GitHub Profile</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         04 // AREAS OF FOCUS / SERVICES
+         ====================================================================== -->
+    <section id="services" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">04 // DOMAIN CAPABILITIES</span>
+          <h2 class="section-title">AREAS OF <span class="gradient-text">EXPERTISE</span></h2>
+          <p class="section-desc">What I bring to a high-impact team, project, or data analytics apprenticeship.</p>
+        </div>
+
+        <div class="services-grid">
+          
+          <div class="glass-card service-card" data-tilt>
+            <div class="service-icon">📊</div>
+            <h3 class="service-name">Data Analytics &amp; Insights</h3>
+            <p class="service-text">
+              Transforming raw datasets into clean, structured insights using Python, statistical exploration, and visual charts.
+            </p>
+          </div>
+
+          <div class="glass-card service-card" data-tilt>
+            <div class="service-icon">🐍</div>
+            <h3 class="service-name">Python Development</h3>
+            <p class="service-text">
+              Writing clean, efficient, and well-documented Python scripts for data manipulation, automation, and problem-solving.
+            </p>
+          </div>
+
+          <div class="glass-card service-card" data-tilt>
+            <div class="service-icon">🌐</div>
+            <h3 class="service-name">Web &amp; WordPress Development</h3>
+            <p class="service-text">
+              Building responsive, semantic, and modern web pages utilizing HTML5, modern CSS layouts (Grid/Flexbox), and WordPress CMS.
+            </p>
+          </div>
+
+          <div class="glass-card service-card" data-tilt>
+            <div class="service-icon">⚡</div>
+            <h3 class="service-name">Git &amp; GitHub Version Control</h3>
+            <p class="service-text">
+              Collaborative coding practices, branch management, pull requests, issue tracking, and maintaining clean commit histories.
+            </p>
+          </div>
+
+          <div class="glass-card service-card" data-tilt>
+            <div class="service-icon">🤖</div>
+            <h3 class="service-name">AI &amp; Cloud Architecture</h3>
+            <p class="service-text">
+              Certified in Microsoft &amp; EY AI Skill Passport and AWS Forage Solution Architecture Job Simulation.
+            </p>
+          </div>
+
+          <div class="glass-card service-card" data-tilt>
+            <div class="service-icon">💡</div>
+            <h3 class="service-name">Critical &amp; Design Thinking</h3>
+            <p class="service-text">
+              Certified by L&amp;T in Critical Thinking, Design Thinking, Leadership, and collaborative teamwork.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         05 // TIMELINE: EDUCATION & VERIFIED CERTIFICATIONS
+         ====================================================================== -->
+    <section id="certifications" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">05 // CREDENTIALS &amp; MILESTONES</span>
+          <h2 class="section-title">EDUCATION &amp; <span class="gradient-text">CERTIFICATIONS</span></h2>
+          <p class="section-desc">Academic foundation, prestigious competitions, and verified industry credentials.</p>
+        </div>
+
+        <div class="timeline-dual-grid">
+          
+          <!-- Education Column -->
+          <div class="timeline-column">
+            <h3 class="timeline-col-title"><span class="col-icon">🎓</span> Academic Foundation</h3>
+            
+            <div class="timeline-list">
+              <div class="timeline-item glass-card" data-tilt>
+                <span class="time-period highlight-badge">2025 — 2029 (CURRENT BATCH)</span>
+                <h4 class="time-role">B.Tech in Computer Science Engineering</h4>
+                <p class="time-org">Specialization: Data Science &amp; Artificial Intelligence</p>
+                <p class="time-desc">
+                  Currently in 2nd Year. Core focus on Python programming, Data Structures &amp; Algorithms, 
+                  Statistical Analysis, Database Management, and Artificial Intelligence foundations.
+                </p>
+              </div>
+
+              <!-- IIT Guwahati Gold Certificate -->
+              <div class="timeline-item glass-card gold-border" data-tilt>
+                <span class="time-period gold-tag">🏆 NATIONAL PRESTIGE // AIR 68</span>
+                <h4 class="time-role">IIT GUWAHATI — GOLD CERTIFICATE</h4>
+                <p class="time-org">Technothlon Prelims '23 // HAULT All India Rank 68</p>
+                <p class="time-desc">
+                  Awarded the prestigious Gold Certificate by the Indian Institute of Technology (IIT) Guwahati 
+                  for achieving an outstanding All India Rank of 68 in the Technothlon Prelims competition.
+                </p>
+              </div>
+
+              <!-- India AI Government -->
+              <div class="timeline-item glass-card" data-tilt>
+                <span class="time-period">GOVERNMENT OF INDIA</span>
+                <h4 class="time-role">India AI — "YUVA AI for ALL"</h4>
+                <p class="time-org">Ministry of Electronics and Information Technology (MeitY)</p>
+                <p class="time-desc">
+                  Certified by the national IndiaAI initiative for mastering the principles, ethical frameworks, 
+                  and societal applications of Artificial Intelligence.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certifications Column -->
+          <div class="timeline-column">
+            <h3 class="timeline-col-title"><span class="col-icon">📜</span> Industry Certifications</h3>
+            
+            <div class="timeline-list">
+              <!-- EY & Microsoft -->
+              <div class="timeline-item glass-card" data-tilt>
+                <span class="time-period blue-tag">EY &amp; MICROSOFT</span>
+                <h4 class="time-role">"AI Skill Passport" Certification</h4>
+                <p class="time-org">Ernst &amp; Young (EY) and Microsoft</p>
+                <p class="time-desc">
+                  Validated competencies in generative AI systems, machine learning ethics, cloud data principles, 
+                  and AI-driven enterprise transformation.
+                </p>
+              </div>
+
+              <!-- AWS Forage -->
+              <div class="timeline-item glass-card" data-tilt>
+                <span class="time-period amber-tag">AMAZON WEB SERVICES &amp; FORAGE</span>
+                <h4 class="time-role">Solutions Architecture Job Simulation</h4>
+                <p class="time-org">AWS / Forage</p>
+                <p class="time-desc">
+                  Practical simulation designing highly available, fault-tolerant, cost-effective cloud architectures 
+                  and scalable storage solutions on AWS.
+                </p>
+              </div>
+
+              <!-- L&T Website Certificate -->
+              <div class="timeline-item glass-card" data-tilt>
+                <span class="time-period">LARSEN &amp; TOUBRO (L&amp;T)</span>
+                <h4 class="time-role">Website Certificate &amp; IT World Essential</h4>
+                <p class="time-org">L&amp;T EduTech</p>
+                <p class="time-desc">
+                  Awarded credentials in modern website development, web standards, and fundamental information 
+                  technology enterprise essentials.
+                </p>
+              </div>
+
+              <!-- L&T Soft Skills -->
+              <div class="timeline-item glass-card" data-tilt>
+                <span class="time-period">LARSEN &amp; TOUBRO (L&amp;T)</span>
+                <h4 class="time-role">Critical Thinking, Design Thinking, Leadership &amp; Teamwork</h4>
+                <p class="time-org">L&amp;T Professional Competencies</p>
+                <p class="time-desc">
+                  Certified training in strategic problem decomposition, design thinking methodologies, 
+                  cross-functional leadership, and high-performance collaboration.
+                </p>
+              </div>
+
+              <!-- Udemy WordPress -->
+              <div class="timeline-item glass-card" data-tilt>
+                <span class="time-period">UDEMY CERTIFIED</span>
+                <h4 class="time-role">WordPress Website Development</h4>
+                <p class="time-org">Udemy</p>
+                <p class="time-desc">
+                  Practical expertise in CMS architecture, custom theme customization, responsive styling, 
+                  and content deployment.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ======================================================================
+         06 // CONTACT SECTION & RESUME
+         ====================================================================== -->
+    <section id="contact" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">06 // GET IN TOUCH</span>
+          <h2 class="section-title">CONNECT WITH <span class="gradient-text">ANSH RAJ</span></h2>
+          <p class="section-desc">Available for Data Analytics Apprenticeships, internships, and collaborative software projects.</p>
+        </div>
+
+        <div class="contact-box glass-card">
+          <div class="contact-grid">
+            
+            <!-- Left Info Panel -->
+            <div class="contact-details">
+              <div class="contact-badge">DIRECT COMMUNICATION LINK</div>
+              <h3 class="contact-subhead">Let's Discuss Opportunities</h3>
+              <p class="contact-blurb">
+                I am actively seeking a <strong>Data Analytics Apprenticeship</strong> where I can contribute my skills in Python, 
+                data problem-solving, and web development. Feel free to connect directly via my verified professional buttons:
+              </p>
+
+              <div class="contact-channels">
+                <div class="channel-item">
+                  <span class="channel-label">DIRECT EMAIL COMMUNICATION</span>
+                  <a href="mailto:ar2575499@gmail.com" class="btn-rgb btn-rgb-block">
+                    <span class="rgb-icon">✉️</span>
+                    <span>Send Email to Ansh Raj</span>
+                    <span class="btn-rgb-arrow">→</span>
+                  </a>
+                </div>
+                <div class="channel-item">
+                  <span class="channel-label">ACADEMIC PROGRAM</span>
+                  <span class="channel-text">B.Tech CSE (Data Science &amp; AI) // Batch 2025–2029</span>
+                </div>
+              </div>
+
+              <!-- Verified Direct RGB Buttons -->
+              <div class="social-links-row">
+                <!-- RGB LinkedIn Button -->
+                <a href="https://www.linkedin.com/in/ansh-raj-6442a7393" target="_blank" rel="noopener" class="btn-rgb" title="Ansh Raj LinkedIn">
+                  <span class="rgb-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                  </span>
+                  <span>LinkedIn Profile</span>
+                  <span class="btn-rgb-arrow">↗</span>
+                </a>
+
+                <!-- RGB GitHub Button -->
+                <a href="https://github.com/anshraj816" target="_blank" rel="noopener" class="btn-rgb" title="Ansh Raj GitHub">
+                  <span class="rgb-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  </span>
+                  <span>GitHub Repositories</span>
+                  <span class="btn-rgb-arrow">↗</span>
+                </a>
+              </div>
+
+              <!-- Download Resume Button -->
+              <div class="resume-cta-block">
+                <a href="#" class="btn btn-secondary btn-download" onclick="window.downloadResumeMock(event);">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                  <span>Download Curriculum Vitae (PDF/TXT)</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right Interactive Form -->
+            <div class="contact-form-side">
+              <form id="contact-form" class="cyber-form" novalidate onsubmit="window.handleFormSubmit(event)">
+                <div class="form-row">
+                  <div class="input-group">
+                    <label for="form-name">YOUR NAME <span class="req">*</span></label>
+                    <input type="text" id="form-name" placeholder="Recruiter / Collaborator Name" required />
+                    <span class="err-msg">Please provide your name.</span>
+                  </div>
+                  <div class="input-group">
+                    <label for="form-email">EMAIL ADDRESS <span class="req">*</span></label>
+                    <input type="email" id="form-email" placeholder="company@domain.com" required />
+                    <span class="err-msg">Please enter a valid email address.</span>
+                  </div>
+                </div>
+
+                <div class="input-group">
+                  <label for="form-subject">SUBJECT / PURPOSE</label>
+                  <input type="text" id="form-subject" placeholder="Data Analytics Apprenticeship / Project Collaboration" />
+                </div>
+
+                <div class="input-group">
+                  <label for="form-message">MESSAGE <span class="req">*</span></label>
+                  <textarea id="form-message" rows="5" placeholder="Write your message or inquiry here..." required></textarea>
+                  <span class="err-msg">Please enter your message.</span>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" data-sfx="send">
+                  <span>Send Message to Ansh Raj</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                </button>
+
+                <div id="form-status" class="form-status" aria-live="polite"></div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Footer Bar with Professional RGB Button Pills -->
+        <footer class="portfolio-footer">
+          <div class="footer-left">
+            <span class="footer-brand">✦ ANSH RAJ</span>
+            <span class="footer-meta">© 2026 // B.TECH CSE (DATA SCIENCE &amp; AI) 2025–2029</span>
+          </div>
+
+          <div class="footer-center">
+            <a href="https://github.com/anshraj816" target="_blank" rel="noopener" class="btn-rgb btn-rgb-sm">
+              <span class="rgb-icon">🐙</span>
+              <span>GitHub: anshraj816</span>
+            </a>
+            <span class="footer-dot">•</span>
+            <a href="https://www.linkedin.com/in/ansh-raj-6442a7393" target="_blank" rel="noopener" class="btn-rgb btn-rgb-sm">
+              <span class="rgb-icon">💼</span>
+              <span>LinkedIn: ansh-raj</span>
+            </a>
+          </div>
+
+          <div class="footer-right">
+            <a href="#hero" class="footer-top-link" data-sfx="click">
+              <span>BACK TO TOP</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+            </a>
+          </div>
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- External CDNs: Three.js & GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  
+  <!-- Profile Asset & Core Application Scripts -->
+  <script src="profile_data.js"></script>
+  <script src="main.js?v=7"></script>
+</body>
+</html>
