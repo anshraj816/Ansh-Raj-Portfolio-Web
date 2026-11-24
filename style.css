@@ -1236,10 +1236,12 @@ img, svg, video {
 
 .contact-subhead {
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
   font-weight: 800;
   line-height: 1.2;
   margin-bottom: 16px;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .contact-blurb {
@@ -1710,11 +1712,67 @@ img, svg, video {
 
   .contact-box {
     padding: 24px 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 24px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact-details {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .contact-subhead {
+    font-size: clamp(1.4rem, 6.2vw, 1.85rem);
+    line-height: 1.25;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    margin-bottom: 14px;
+  }
+
+  .contact-blurb {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .contact-channels {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+
+  .channel-text {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .social-links-row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .social-links-row .btn-rgb {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
   }
 
   .form-row {
@@ -1778,6 +1836,10 @@ img, svg, video {
 
   .section-header {
     margin-bottom: 36px;
+  }
+
+  .contact-subhead {
+    font-size: 1.45rem;
   }
 }
 
