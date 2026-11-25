@@ -1876,6 +1876,13 @@ img, svg, video {
   border: 1px solid rgba(245, 158, 11, 0.25) !important;
 }
 
+.green-tag {
+  color: #76b900 !important;
+  background: rgba(118, 185, 0, 0.12) !important;
+  border: 1px solid rgba(118, 185, 0, 0.35) !important;
+  font-weight: 700;
+}
+
 .highlight-badge {
   color: var(--accent-blue) !important;
   background: rgba(0, 240, 255, 0.12) !important;
@@ -2254,26 +2261,22 @@ img, svg, video {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
   overflow: hidden;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
-}
-
-/* FRONT FACE: Active Biometric Scanner Over Stylized Image */
-.flip-front {
-  background: #060914;
-  transform: rotateY(0deg);
+  background: rgba(10, 12, 18, 0.95);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  transition: opacity 0.3s ease 0.2s;
 }
 
-.cyber-biometric-card.is-flipped .flip-front {
-  opacity: 0;
-  pointer-events: none;
+.flip-front {
+  z-index: 2;
+  transform: rotateY(0deg);
 }
 
+.flip-back {
+  transform: rotateY(180deg);
+  background: #000000;
+}
+
+/* Front Scanning Visuals */
 .scan-img-underlay {
   position: absolute;
   top: 0;
@@ -2281,16 +2284,16 @@ img, svg, video {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  z-index: 1;
 }
 
 .profile-photo-scan {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  filter: grayscale(90%) brightness(0.35) contrast(1.4);
-  opacity: 0.8;
+  object-position: center 20%;
+  opacity: 0.35;
+  filter: grayscale(100%) contrast(140%) brightness(0.7);
+  mix-blend-mode: luminosity;
 }
 
 .scan-matrix-mesh {
@@ -2299,33 +2302,39 @@ img, svg, video {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0, 240, 255, 0.08) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-image: 
+    linear-gradient(rgba(0, 240, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 240, 255, 0.15) 1px, transparent 1px);
+  background-size: 16px 16px;
   pointer-events: none;
 }
 
-/* RGB Continuous Scanning Laser Beam */
+/* RGB Scanner Beam Animation */
 .rgb-scanner-beam {
   position: absolute;
+  top: 0;
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, transparent 5%, #00f0ff 25%, #8b5cf6 50%, #ec4899 75%, transparent 95%);
-  box-shadow: 0 0 16px #00f0ff, 0 0 28px #8b5cf6;
-  animation: rgbLaserScan 2.5s ease-in-out infinite alternate;
-  pointer-events: none;
+  background: linear-gradient(90deg, 
+    rgba(0, 240, 255, 0) 0%, 
+    rgba(0, 240, 255, 1) 25%, 
+    rgba(139, 92, 246, 1) 50%, 
+    rgba(236, 72, 153, 1) 75%, 
+    rgba(0, 240, 255, 0) 100%
+  );
+  box-shadow: 0 0 16px #00f0ff, 0 0 24px #8b5cf6, 0 4px 12px rgba(236, 72, 153, 0.6);
   z-index: 5;
+  animation: cyberScanBeam 2.5s ease-in-out infinite alternate;
 }
 
-@keyframes rgbLaserScan {
-  0% { top: 4%; opacity: 0.3; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { top: 96%; opacity: 0.3; }
+@keyframes cyberScanBeam {
+  0% { top: 0%; opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { top: calc(100% - 4px); opacity: 0.8; }
 }
 
-/* Futuristic HUD Corner Brackets */
+/* HUD Corner Brackets */
 .scan-hud-corners {
   position: absolute;
   top: 0;
@@ -2336,158 +2345,154 @@ img, svg, video {
   z-index: 6;
 }
 
-.scan-hud-corners .hud-c {
+.hud-c {
   position: absolute;
   width: 16px;
   height: 16px;
-  border-color: #00f0ff;
-  border-style: solid;
+  border: 2px solid var(--accent-blue);
 }
 
-.hud-c.top-left { top: 12px; left: 12px; border-width: 2px 0 0 2px; }
-.hud-c.top-right { top: 12px; right: 12px; border-width: 2px 2px 0 0; }
-.hud-c.bottom-left { bottom: 12px; left: 12px; border-width: 0 0 2px 2px; }
-.hud-c.bottom-right { bottom: 12px; right: 12px; border-width: 0 2px 2px 0; }
+.hud-c.top-left { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+.hud-c.top-right { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+.hud-c.bottom-left { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+.hud-c.bottom-right { bottom: 12px; right: 12px; border-left: none; border-top: none; }
 
+/* Target Reticle */
 .scan-target-reticle {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  border: 1.5px dashed rgba(0, 240, 255, 0.6);
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border: 1px dashed rgba(0, 240, 255, 0.5);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 16px;
   z-index: 6;
-  animation: spinSlow 12s linear infinite;
-  background: rgba(8, 12, 22, 0.4);
+  animation: rotateReticle 10s linear infinite;
 }
 
 .reticle-inner-ring {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  border: 1px solid rgba(139, 92, 246, 0.8);
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(139, 92, 246, 0.6);
   border-radius: 50%;
 }
 
 .reticle-glyph {
-  font-size: 1.4rem;
   color: var(--accent-blue);
-  animation: pulseBeacon 1.5s infinite ease-in-out;
+  font-size: 1rem;
+  animation: pulseDot 1.5s infinite;
 }
 
+@keyframes rotateReticle {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Status Info */
 .scan-status-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  width: 100%;
+  text-align: center;
   z-index: 6;
-  background: rgba(6, 10, 20, 0.7);
-  padding: 8px 14px;
-  border-radius: 20px;
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 240, 255, 0.2);
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .scan-badge {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--accent-blue);
-  letter-spacing: 0.08em;
+  font-size: 0.68rem;
   font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent-blue);
+  margin-bottom: 4px;
 }
 
 .scan-prompt {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  color: var(--text-dim);
+  font-size: 0.62rem;
+  color: var(--text-muted);
   letter-spacing: 0.04em;
 }
 
-/* Hover Decryption Loading Overlay (1% to 100%) */
+/* Hover Loading Overlay (1 to 100%) */
 .scan-loading-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(6, 10, 20, 0.88);
-  backdrop-filter: blur(10px);
-  display: none;
+  background: rgba(6, 8, 14, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  z-index: 10;
-  border-radius: 15px;
-}
-
-.scan-loading-overlay.active {
-  display: flex;
-}
-
-.loading-spinner-ring {
-  width: 64px;
-  height: 64px;
-  border: 3px solid rgba(0, 240, 255, 0.2);
-  border-top-color: #00f0ff;
-  border-right-color: #8b5cf6;
-  border-radius: 50%;
-  animation: spinSlow 1s linear infinite;
-}
-
-.loading-pct-text {
-  font-family: var(--font-display);
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: #00f0ff;
-  text-shadow: 0 0 16px rgba(0, 240, 255, 0.6);
-  letter-spacing: 0.02em;
-}
-
-.loading-sub-text {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--accent-violet);
-  letter-spacing: 0.06em;
-}
-
-/* BACK FACE: High-Definition Portrait Reveal */
-.flip-back {
-  background: #04060c;
-  transform: rotateY(180deg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 10px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease 0.2s;
+  transition: opacity 0.25s ease;
 }
 
-.cyber-biometric-card.is-flipped .flip-back {
+.cyber-biometric-card.is-decrypting .scan-loading-overlay {
   opacity: 1;
   pointer-events: auto;
 }
 
+.loading-spinner-ring {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(0, 240, 255, 0.15);
+  border-top-color: #00f0ff;
+  border-right-color: #8b5cf6;
+  border-radius: 50%;
+  animation: spinSlow 0.8s linear infinite;
+}
+
+.loading-pct-text {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #00f0ff;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 16px rgba(0, 240, 255, 0.7);
+}
+
+.loading-sub-text {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+}
+
+/* Back Face (Revealed Portrait) */
 .profile-img-wrap {
   position: relative;
   width: 100%;
   height: 100%;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
-  filter: contrast(1.05) brightness(1.02);
-  transition: transform 0.4s ease;
+  object-position: center 20%;
+  transition: transform 0.5s ease;
 }
 
-.cyber-biometric-card:hover .profile-photo {
+.profile-img-wrap:hover .profile-photo {
   transform: scale(1.03);
 }
 
