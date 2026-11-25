@@ -957,7 +957,9 @@ img, svg, video {
   pointer-events: none;
 }
 
-.glow-cyan { background: rgba(0, 240, 255, 0.25); }\n.glow-violet { background: rgba(139, 92, 246, 0.25); }\n.glow-blue { background: rgba(59, 130, 246, 0.25); }
+.glow-cyan { background: rgba(0, 240, 255, 0.25); }
+.glow-violet { background: rgba(139, 92, 246, 0.25); }
+.glow-blue { background: rgba(59, 130, 246, 0.25); }
 
 .screen-content {
   position: relative;
@@ -1874,6 +1876,13 @@ img, svg, video {
   border: 1px solid rgba(245, 158, 11, 0.25) !important;
 }
 
+.green-tag {
+  color: #76b900 !important;
+  background: rgba(118, 185, 0, 0.12) !important;
+  border: 1px solid rgba(118, 185, 0, 0.35) !important;
+  font-weight: 700;
+}
+
 .highlight-badge {
   color: var(--accent-blue) !important;
   background: rgba(0, 240, 255, 0.12) !important;
@@ -2182,11 +2191,7 @@ img, svg, video {
   padding: 14px 20px;
 }
 
-@keyframes rgbShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+@keyframes rgbShift {\n  0% { background-position: 0% 50%; }\n  50% { background-position: 100% 50%; }\n  100% { background-position: 0% 50%; }\n}
 
 .rgb-icon {
   display: flex;
